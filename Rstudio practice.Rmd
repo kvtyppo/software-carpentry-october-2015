@@ -12,6 +12,10 @@ data1 <- read.table(file = "~/software-carpentry-october-2015/Sunday_scripts/out
 summary(data1)
 getwd()
 
+```
+
+You can embed plots, for example. 
+```{r}
 #pdf(file="myplot.pdf")
 x<-as.numeric(data1$year)
 y<-as.numeric(data1$lifeExp)
@@ -27,7 +31,7 @@ plot(x, y,
   #dev.off()
 ```
 
-You can also embed plots, for example:
+You can create subset data:
 
 ```{r, echo=TRUE}
 
@@ -51,6 +55,48 @@ plot(x, y,
 
 ```
 
+```{r}
+  newdata2 <- (data1 [which (data1$country=="Niger"),])
+#summary (newdata2)
+getwd()
+
+#pdf(file="myplot.pdf")
+x<-as.numeric(newdata2$year)
+y<-as.numeric(newdata2$lifeExp)
+plot(x, y,
+     main="",
+     xlab="",
+     ylab="")
+  title(main=" Life Expectancy Niger by Year",
+        xlab="Year", ylab="Life Expectancy")
+  abline(lm(y~x))
+  
+  #pdf(file="myplot.pdf)
+  #dev.off()
+
+```
+
+```{r}
+newdata3 <- (data1 [which (data1$country=="Sweden"),])
+#summary (newdata3)
+getwd()
+
+#pdf(file="myplot.pdf")
+x<-as.numeric(newdata3$year)
+y<-as.numeric(newdata3$lifeExp)
+plot(x, y,
+     main="",
+     xlab="",
+     ylab="")
+  title(main=" Life Expectancy Sweden by Year",
+        xlab="Year", ylab="Life Expectancy")
+  abline(lm(y~x))
+  
+  #pdf(file="myplot.pdf)
+  #dev.off()
+
+```
+Descriptive Statistics
 ```{r, echo=F}
   descriptivesdta <- c()
   descriptivesdta$country <- c("Finland", "Niger", "Sweden")
