@@ -1,0 +1,67 @@
+---
+title: "My Workspace"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+data1 <- read.table(file = "~/software-carpentry-october-2015/Sunday_scripts/output/combined_gapMinder.tsv", header = T)
+summary(data1)
+getwd()
+
+#pdf(file="myplot.pdf")
+x<-as.numeric(data1$year)
+y<-as.numeric(data1$lifeExp)
+plot(x, y,
+     main="",
+     xlab="",
+     ylab="")
+  title(main=" Life Expectancy All Countries by Year",
+        xlab="Year", ylab="Life Expectancy")
+  abline(lm(y~x))
+  
+  #pdf(file="myplot.pdf)
+  #dev.off()
+```
+
+You can also embed plots, for example:
+
+```{r, echo=TRUE}
+
+newdata <- (data1 [which (data1$country=="Finland"),])
+#summary (newdata)
+getwd()
+
+#pdf(file="myplot.pdf")
+x<-as.numeric(newdata$year)
+y<-as.numeric(newdata$lifeExp)
+plot(x, y,
+     main="",
+     xlab="",
+     ylab="")
+  title(main=" Life Expectancy Finland by Year",
+        xlab="Year", ylab="Life Expectancy")
+  abline(lm(y~x))
+  
+  #pdf(file="myplot.pdf)
+  #dev.off()
+
+```
+
+```{r, echo=F}
+  descriptivesdta <- c()
+  descriptivesdta$country <- c("Finland", "Niger", "Sweden")
+  descriptivesdta$min <-c(min (data1[data1$country=="Finland",]$lifeExp), min(data1[data1$country=="Niger",]$lifeExp), min(data1[data1$country=="Sweden",]$lifeExp))
+descriptivesdta$max <- c(max (data1[data1$country=="Finland",]$lifeExp), max(data1[data1$country=="Niger",]$lifeExp), max(data1[data1$country=="Sweden",]$lifeExp))
+descriptivesdta$mean <- c(mean (data1[data1$country=="Finland",]$lifeExp), mean(data1[data1$country=="Niger",]$lifeExp), mean(data1[data1$country=="Sweden",]$lifeExp))
+  
+  descriptivesdtaframe <- data.frame(descriptivesdta)
+  descriptivesdtaframe
+  
+```
+Sweden has the highest mean life expectancy of the three countries. 
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.Change to TRUE to print. 
